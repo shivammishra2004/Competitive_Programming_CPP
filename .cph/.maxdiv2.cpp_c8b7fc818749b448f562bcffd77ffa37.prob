@@ -1,0 +1,1 @@
+{"name":"Local: maxdiv2","url":"d:\\OneDrive\\courses\\c++\\CP\\maxdiv2.cpp","tests":[{"id":1731591570653,"input":"3\n3 10\n1 2 3\n4 2\n1 1 2 2\n6 2\n2 3 3 2 4 4\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c++\\CP\\maxdiv2.cpp","group":"local","local":true}

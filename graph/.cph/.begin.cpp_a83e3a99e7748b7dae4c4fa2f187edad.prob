@@ -1,0 +1,1 @@
+{"name":"Local: begin","url":"d:\\OneDrive\\courses\\c++\\CP\\graph\\begin.cpp","tests":[{"id":1719563285935,"input":"8 8\n6 0\n0 2\n2 4\n4 7\n7 5\n5 1\n1 3\n5 6","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c++\\CP\\graph\\begin.cpp","group":"local","local":true}

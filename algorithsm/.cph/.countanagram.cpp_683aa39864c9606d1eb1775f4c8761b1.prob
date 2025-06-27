@@ -1,0 +1,1 @@
+{"name":"Local: countanagram","url":"d:\\OneDrive\\courses\\c++\\CP\\algorithsm\\countanagram.cpp","tests":[{"id":1717323437184,"input":"asdfadfs\nasfd","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c++\\CP\\algorithsm\\countanagram.cpp","group":"local","local":true}

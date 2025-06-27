@@ -1,0 +1,1 @@
+{"name":"Local: slidingwidow","url":"d:\\OneDrive\\courses\\c++\\CP\\algorithsm\\slidingwidow.cpp","tests":[{"id":1717154127010,"input":"1\n10 3\n4 2 1 7 8 1 2 8 1 0","output":"16"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c++\\CP\\algorithsm\\slidingwidow.cpp","group":"local","local":true}
