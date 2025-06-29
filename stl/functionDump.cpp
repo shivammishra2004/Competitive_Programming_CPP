@@ -66,10 +66,10 @@ public:
     }
 
 
-    void unionBySize(int u, int v) {
+    bool unionBySize(int u, int v) {
         int ulp_u = findUPar(u);
         int ulp_v = findUPar(v);
-        if (ulp_u == ulp_v) return;
+        if (ulp_u == ulp_v) return false;
         if (size[ulp_u] < size[ulp_v]) {
             parent[ulp_u] = ulp_v;
             size[ulp_v] += size[ulp_u];
@@ -78,5 +78,6 @@ public:
             parent[ulp_v] = ulp_u;
             size[ulp_u] += size[ulp_v];
         }
+        return true;
     }
 };
