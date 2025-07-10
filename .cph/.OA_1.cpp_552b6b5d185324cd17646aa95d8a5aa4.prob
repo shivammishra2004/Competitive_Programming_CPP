@@ -1,0 +1,1 @@
+{"name":"Local: OA_1","url":"d:\\OneDrive\\courses\\c 1\\CP\\OA_1.cpp","tests":[{"id":1751455218337,"input":"5 2\n3 7 1 11 8","output":""},{"id":1751460293467,"input":"5 3 \n3 9 4 2 16","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c 1\\CP\\OA_1.cpp","group":"local","local":true}

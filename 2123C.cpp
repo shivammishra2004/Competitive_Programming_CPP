@@ -37,7 +37,7 @@ int nCr(int n, int r) { if (r > n - r) r = n - r; int ans = 1; for (int i = 0; i
 int nCrModP(int n, int r, int p) { if (r > n - r) r = n - r; int C[r + 1]; memset(C, 0, sizeof(C)); C[0] = 1; for (int i = 1; i <= n; i++) { for (int j = min(i, r); j > 0; j--) C[j] = (C[j] + C[j - 1]) % p; } return C[r]; }
 int nPr(int n, int r) { int ans = 1; for (int i = 0; i < r; i++) ans *= (n - i); return ans; }
 int nPrModP(int n, int r, int p) { int ans = 1; for (int i = 0; i < r; i++) ans = (ans * (n - i)) % p; return ans; }
-int log(int num, int base) { int ans = 0; while (num) { num /= base; ans++; } return ans; } //return ceil of log
+int log(int num, int base) { int ans = 0; while (num) { num /= base; ans++; } return ans; }
 int countSetBits(int x) { int ans = 0; while (x) { ans += (x & 1); x >>= 1; } return ans; }
 
 void _print(long long t) { cerr << t; }
@@ -79,7 +79,34 @@ void myFunc(T&& value, Ts&& ...rest) {
 }
 
 void solve() {
-    
+    int n;cin >> n;
+    vector<int> v(n);
+    for(int i=0;i<n;i++){
+        int x;cin >> x;
+        v[i] = x;
+    }
+    // debug(v);
+    vector<int> pfs(n),sfs(n);
+    int maxi = 0,mini = INT_MAX;
+    for(int i=n-1;i>=0;i--){
+        if(v[i] >= maxi){
+            maxi = v[i];
+        }
+        sfs[i] = maxi;
+    }
+    for(int i = 0;i<n;i++){
+        if(mini >= v[i]){
+            mini = v[i];
+        }
+        pfs[i] = mini;
+    }
+    string s;
+    for(int i=0;i<n;i++){
+        if(v[i] == pfs[i] || v[i] == sfs[i]) s+= '1';
+        else s+='0';
+    }
+    cout << s << endl;
+
 }
 
 int32_t main() {
@@ -98,90 +125,3 @@ int32_t main() {
     }
     return 0;
 }
-
-
-
-
-/****** Prime Number ********/
-// Primality Check
-// T.C = root(n);
-
-bool isPrime(int x) {
-    if (x < 2) return false;
-    for (int i = 2; i * i <= x; i++) {
-        if (x % i == 0)
-            return false;
-    }
-    return true;
-}
-
-// Generate list of primes
-//T.C = n log(logn);
-const int MAXN = 1e6;  // at max
-vector<bool> sieve(MAXN + 1, true);
-
-void generatePrimes() {
-    sieve[0] = sieve[1] = false;
-    for (int i = 2; i * i <= MAXN; ++i) {
-        if (sieve[i]) {
-            for (int j = i * i; j <= MAXN; j += i) {
-                sieve[j] = false;
-            }
-        }
-    }
-}
-
-// Generate list of divisors of each number
-//T.C = nlogn;
-const int MAXN= 1e5; // at max
-vector<bool> sieve(MAXN+1,true);
-vector<vector<int>> divisors(MAXN+1);
-void generatePrimes() {
-    sieve[0] = sieve[1] = false;
-    for (int i = 2; i <= N; i++) {
-        if (sieve[i]) {
-            for (int j = 2 * i; j <= MAXN; j += i) {
-                divisors[j].push_back(i);
-                sieve[j] = false;
-            }
-        }
-    }
-}
-
-
-// DSU
-
-class DisjointSet {
-public:
-    vector<int> parent,size;
-    DisjointSet(int n) {
-        size.resize(n+1,1);
-        parent.resize(n + 1);
-        for (int i = 0; i <= n; i++) {
-            parent[i] = i;
-        }
-    }
-
-    int findUPar(int node) {
-        if (node == parent[node])
-            return node;
-        return parent[node] = findUPar(parent[node]);
-    }
-
-
-    bool unionBySize(int u, int v) {
-        int ulp_u = findUPar(u);
-        int ulp_v = findUPar(v);
-        if (ulp_u == ulp_v) return false;
-        if (size[ulp_u] < size[ulp_v]) {
-            parent[ulp_u] = ulp_v;
-            size[ulp_v] += size[ulp_u];
-        }
-        else {
-            parent[ulp_v] = ulp_u;
-            size[ulp_u] += size[ulp_v];
-        }
-        return true;
-    }
-};
-
