@@ -96,6 +96,8 @@
         "xstddef": "cpp",
         "xtr1common": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "xhash": "cpp",
+        "xtree": "cpp"
     }
 }

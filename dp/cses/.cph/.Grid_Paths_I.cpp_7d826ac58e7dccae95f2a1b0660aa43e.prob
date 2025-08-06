@@ -1,0 +1,1 @@
+{"name":"Local: Grid_Paths_I","url":"d:\\OneDrive\\courses\\c 1\\CP\\dp\\cses\\Grid_Paths_I.cpp","tests":[{"id":1753614026558,"input":"4\n....\n.*..\n...*\n*...","output":"3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c 1\\CP\\dp\\cses\\Grid_Paths_I.cpp","group":"local","local":true}

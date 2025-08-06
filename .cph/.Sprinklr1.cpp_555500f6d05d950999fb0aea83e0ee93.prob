@@ -1,0 +1,1 @@
+{"name":"Local: Sprinklr1","url":"d:\\OneDrive\\courses\\c 1\\CP\\Sprinklr1.cpp","tests":[{"id":1752757546191,"input":"3 3\n-2 -3 3\n-5 -10 1\n10 30 -5","output":"7"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c 1\\CP\\Sprinklr1.cpp","group":"local","local":true}

@@ -37,7 +37,7 @@ int nCr(int n, int r) { if (r > n - r) r = n - r; int ans = 1; for (int i = 0; i
 int nCrModP(int n, int r, int p) { if (r > n - r) r = n - r; int C[r + 1]; memset(C, 0, sizeof(C)); C[0] = 1; for (int i = 1; i <= n; i++) { for (int j = min(i, r); j > 0; j--) C[j] = (C[j] + C[j - 1]) % p; } return C[r]; }
 int nPr(int n, int r) { int ans = 1; for (int i = 0; i < r; i++) ans *= (n - i); return ans; }
 int nPrModP(int n, int r, int p) { int ans = 1; for (int i = 0; i < r; i++) ans = (ans * (n - i)) % p; return ans; }
-int log(int num, int base) { int ans = 0; while (num) { num /= base; ans++; } return ans; } //return ceil of log
+int log(int num, int base) { int ans = 0; while (num) { num /= base; ans++; } return ans; }
 int countSetBits(int x) { int ans = 0; while (x) { ans += (x & 1); x >>= 1; } return ans; }
 
 void _print(long long t) { cerr << t; }
@@ -78,8 +78,41 @@ void myFunc(T&& value, Ts&& ...rest) {
     cerr << endl;
 }
 
+int getDist(int num,int k){
+    int cnt = 0;
+    while(num <= k){
+        num *=2;
+        cnt++;
+    }
+    return cnt;
+}
+
 void solve() {
-    
+    int n,k;cin >> n >> k;
+    vector<int> v(n);
+    set<int> s;
+    for(int i=0;i<n;i++){
+        cin >> v[i];
+        s.insert(v[i]);
+    }
+    map<int,int> mpp;
+    int cnt= 0;
+    for(int i=0;i<n;i++){
+        if(v[i] > k) cnt++;
+        else{
+            int dist = getDist(v[i],k);
+            mpp[dist]++;
+        }
+    }
+    debug(mpp);
+    int time = 0;
+    myFunc(cnt,time);
+    for(auto &i:mpp){
+        cnt += max(0LL,i.second-1-i.first+time);
+        time += max(0LL,i.second-1-i.first+time);
+        // myFunc(cnt,time,min(0,i.second-1-i.first+time));
+    }
+    cout << cnt << endl;
 }
 
 int32_t main() {
@@ -98,163 +131,3 @@ int32_t main() {
     }
     return 0;
 }
-
-
-
-
-/****** Prime Number ********/
-// Primality Check
-// T.C = root(n);
-
-bool isPrime(int x) {
-    if (x < 2) return false;
-    for (int i = 2; i * i <= x; i++) {
-        if (x % i == 0)
-            return false;
-    }
-    return true;
-}
-
-// Generate list of primes
-//T.C = n log(logn);
-const int MAXN = 1e6;  // at max
-vector<bool> sieve(MAXN + 1, true);
-
-void generatePrimes() {
-    sieve[0] = sieve[1] = false;
-    for (int i = 2; i * i <= MAXN; ++i) {
-        if (sieve[i]) {
-            for (int j = i * i; j <= MAXN; j += i) {
-                sieve[j] = false;
-            }
-        }
-    }
-}
-
-// Generate list of divisors of each number
-//T.C = nlogn;
-const int MAXN= 1e5; // at max
-vector<bool> sieve(MAXN+1,true);
-vector<vector<int>> divisors(MAXN+1);
-void generatePrimes() {
-    sieve[0] = sieve[1] = false;
-    for (int i = 2; i <= N; i++) {
-        if (sieve[i]) {
-            for (int j = 2 * i; j <= MAXN; j += i) {
-                divisors[j].push_back(i);
-                sieve[j] = false;
-            }
-        }
-    }
-}
-
-
-// DSU
-
-class DisjointSet {
-public:
-    vector<int> parent,size;
-    DisjointSet(int n) {
-        size.resize(n+1,1);
-        parent.resize(n + 1);
-        for (int i = 0; i <= n; i++) {
-            parent[i] = i;
-        }
-    }
-
-    int findUPar(int node) {
-        if (node == parent[node])
-            return node;
-        return parent[node] = findUPar(parent[node]);
-    }
-
-
-    bool unionBySize(int u, int v) {
-        int ulp_u = findUPar(u);
-        int ulp_v = findUPar(v);
-        if (ulp_u == ulp_v) return false;
-        if (size[ulp_u] < size[ulp_v]) {
-            parent[ulp_u] = ulp_v;
-            size[ulp_v] += size[ulp_u];
-        }
-        else {
-            parent[ulp_v] = ulp_u;
-            size[ulp_u] += size[ulp_v];
-        }
-        return true;
-    }
-};
-
-
-class FenwickTree {
-    vector<int> bit;
-    int n;
-
-public:
-    FenwickTree(int size) {
-        n = size + 1;
-        bit.resize(n, 0);
-    }
-
-    void update(int i, int val) {
-        i++;
-        while (i < n) {
-            bit[i] += val;
-            i += (i & -i);
-        }
-    }
-
-    int query(int i) {
-        i++;
-        int ans = 0;
-        while (i > 0) {
-            ans += bit[i];
-            i -= (i & -i);
-        }
-        return ans;
-    }
-
-    int rangeQuery(int l, int r) {
-        return query(r) - query(l - 1);
-    }
-};
-
-
-// Segment Tree
-
-class SGTree{
-    vector<int> seg;
-    SGTree(int n){
-        seg.resize(4*n+1);
-    }
-    void build(int idx ,int low,int high,vector<int>& arr){
-        if(low == high){
-            seg[idx] = arr[low];
-            return;
-        }
-        int mid = (low + high)/2;
-        build(2*idx+1,low,mid,arr);
-        build(2*idx+2,mid,high,arr);
-        seg[idx] = min(seg[2*idx+1],seg[2*idx+2]);
-    }
-
-    int query(int idx,int low,int high,int l,int r,vector<int>& arr){
-        if(l <= low && high <= r) return seg[idx];
-        else if(high < l || r < low) return INT_MAX;
-        int mid = (low + high)/2;
-        int left = query(2*idx+1,low,mid+1,l,r,arr);
-        int right = query(2*idx+2,mid+1,high,l,r,arr);
-        return min(left,right);
-    }
-
-    int update(int idx,int low,int high,int i, int val){
-        if(low == high){
-            seg[idx] = val;
-            return;
-        }
-        int mid = (low + high)/2;
-        if(i <= mid) update(2*idx+1,low,high,i,val);
-        else update(2*idx+2,low,high,i,val);
-        seg[idx] = min(seg[2*idx+1],seg[2*idx+2]);
-    }
-};

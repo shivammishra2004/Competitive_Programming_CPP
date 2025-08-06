@@ -1,0 +1,1 @@
+{"name":"Local: 111","url":"d:\\OneDrive\\courses\\c 1\\CP\\111.cpp","tests":[{"id":1752922636628,"input":"2\n0 0 20 10\n10 4 14 8\n","output":"200"},{"id":1752922644716,"input":"3\n0 6 20 16\n14 0 24 10\n1 1 6 6\n","output":"301\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c 1\\CP\\111.cpp","group":"local","local":true}

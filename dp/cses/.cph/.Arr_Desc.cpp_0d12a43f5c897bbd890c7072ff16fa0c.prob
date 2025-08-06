@@ -1,0 +1,1 @@
+{"name":"Local: Arr_Desc","url":"d:\\OneDrive\\courses\\c 1\\CP\\dp\\cses\\Arr_Desc.cpp","tests":[{"id":1753689915380,"input":"3 5\n2 0 2","output":"3"},{"id":1753957367023,"input":"10 3\n0 0 0 0 0 0 0 0 0 0","output":"8119"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\OneDrive\\courses\\c 1\\CP\\dp\\cses\\Arr_Desc.cpp","group":"local","local":true}
